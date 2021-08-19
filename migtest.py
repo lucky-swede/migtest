@@ -38,5 +38,6 @@ elif mode == 2:
         for line in f:
             combo = line.strip().split(":")
             check(combo[0], combo[1])
+            time.sleep(10)
 else:
     print("Invalid mode selected. Please rerun the program.")
