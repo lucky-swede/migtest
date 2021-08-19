@@ -1,5 +1,5 @@
 # migtest
-Quick program to test MSA migration status on Minecraft. 
+Quick program to test MSA migration status on Minecraft. The only third party requirement is `requests`.
 
 I am aware that this program is extremely overly simple. I was asked to post this so I did.
 
