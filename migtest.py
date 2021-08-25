@@ -15,7 +15,10 @@ def check(user, password):
     }
     r = requests.post("https://authserver.mojang.com/authenticate", json=body, headers={"content-type": "application/json"})
     jd = r.json()
-    token = jd["accessToken"]
+    try:
+        token = jd["accessToken"]
+    except KeyError:
+        print(f"credentials invalid for {user}, or we went too fast. check this user again (couldn't get accessToken)")
     migcheck = requests.get("https://api.minecraftservices.com/rollout/v1/msamigration", headers={"Authorization": f"Bearer {token}"})
     print(f"{user} - {migcheck.text}")
 
