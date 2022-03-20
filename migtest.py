@@ -3,6 +3,16 @@
 # I am aware that this program is extremely overly simple. I was asked to post it so I have done so.
 # That is all. Enjoy responsibly!
 
+###########################
+# CHANGE THIS TO FALSE TO AVOID CHECKING FORCED MIGRATION
+CHECK_FORCED = True
+###########################
+
+if CHECK_FORCED:
+    feature = "msamigrationforced"
+else:
+    feature = "msamigration"
+
 import requests
 import time
 
@@ -19,7 +29,7 @@ def check(user, password):
         token = jd["accessToken"]
     except KeyError:
         print(f"credentials invalid for {user}, or we went too fast. check this user again (couldn't get accessToken)")
-    migcheck = requests.get("https://api.minecraftservices.com/rollout/v1/msamigration", headers={"Authorization": f"Bearer {token}"})
+    migcheck = requests.get("https://api.minecraftservices.com/rollout/v1/{}".format(feature), headers={"Authorization": f"Bearer {token}"})
     print(f"{user} - {migcheck.text}")
 
 print("Migration Tester")
